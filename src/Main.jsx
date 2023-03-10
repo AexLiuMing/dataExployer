@@ -139,11 +139,11 @@ const Main = (props) => {
             <Tabs>
               <TabList>
                 <Tab><p className="is-size-5">ERC-20</p></Tab>
-                <Tab><p className="is-size-5">ERC-20 LP</p></Tab>
-                <Tab><p className="is-size-5">Real World Assets</p></Tab>
-                <Tab><p className="is-size-5">Peg Stability Modules</p></Tab>
-                <Tab><p className="is-size-5">Direct Deposits</p></Tab>
-                <Tab><p className="is-size-5">Deprecated</p></Tab>
+                {/*<Tab><p className="is-size-5">ERC-20 LP</p></Tab>*/}
+                {/*<Tab><p className="is-size-5">Real World Assets</p></Tab>*/}
+                {/*<Tab><p className="is-size-5">Peg Stability Modules</p></Tab>*/}
+                {/*<Tab><p className="is-size-5">Direct Deposits</p></Tab>*/}
+                {/*<Tab><p className="is-size-5">Deprecated</p></Tab>*/}
               </TabList>
 
               <TabPanel>
@@ -257,7 +257,7 @@ const Main = (props) => {
             <div className="columns">
               <Pip {...props} token="ETH" ilk="ETH-A" formater={formatTwoDp} />
               {/* <Pip {...props} token="wstETH" ilk="WSTETH-A" formater={formatTwoDp} /> */}
-              <Pip {...props} token="BTC" ilk="WBTC-A" formater={formatTwoDp} />
+              {/*<Pip {...props} token="BTC" ilk="WBTC-A" formater={formatTwoDp} />*/}
             </div>
             {/* <div className="columns">
           <Pip {...props} token="LINK" ilk="LINK-A" formater={formatTwoDp} />
@@ -368,11 +368,11 @@ const Main = (props) => {
                   <Clip heading={true} />
                   <tbody>
                     <Clip {...props} token="ETH-A" ilk="ETH-A" />
-                    <Clip {...props} token="ETH-B" ilk="ETH-B" />
-                    <Clip {...props} token="ETH-C" ilk="ETH-C" />
-                    <Clip {...props} token="WBTC-A" ilk="WBTC-A" />
-                    <Clip {...props} token="WBTC-B" ilk="WBTC-B" />
-                    <Clip {...props} token="WBTC-C" ilk="WBTC-C" />
+                    {/*<Clip {...props} token="ETH-B" ilk="ETH-B" />*/}
+                    {/*<Clip {...props} token="ETH-C" ilk="ETH-C" />*/}
+                    {/*<Clip {...props} token="WBTC-A" ilk="WBTC-A" />*/}
+                    {/*<Clip {...props} token="WBTC-B" ilk="WBTC-B" />*/}
+                    {/*<Clip {...props} token="WBTC-C" ilk="WBTC-C" />*/}
                   </tbody>
                 </table>
               </div>
