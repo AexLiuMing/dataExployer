@@ -39,17 +39,17 @@ function Clip(props) {
           <tr>
             <td className="has-text-left">{props.token}</td>
             <td className="has-text-right">{formatAmount.format(ilk.kicks)}</td>
-            {/* <td className="has-text-right">{formatAmount.format(ilk.count)}</td> */}
-            {/* <td className="has-text-right">{formatAmount.format(ilk.dirt)}</td> */}
-            {/* <td className="has-text-right">{formatAmount.format(ilk.hole)}</td> */}
-            {/* <td className="has-text-right">{formatPercent.format(Math.abs(1 - ilk.chop))}</td> */}
-            {/* <td className="has-text-right">{formatAmount.format(ilk.cut)}</td> */}
-            {/* <td className="has-text-right">{formatAmount.format(ilk.step)}</td> */}
-            {/* <td className="has-text-right">{formatAmount.format(ilk.buf)}</td> */}
-            {/* <td className="has-text-right">{formatAmount.format(ilk.cusp)}</td> */}
-            {/* <td className="has-text-right">{formatAmount.format(ilk.tail / 60)}</td> */}
-            {/* <td className="has-text-right">{formatPercent.format(ilk.chip)}</td> */}
-            {/* <td className="has-text-right">{formatAmount.format(ilk.tip)}</td> */}
+             <td className="has-text-right">{formatAmount.format(ilk.count)}</td>
+             <td className="has-text-right">{formatAmount.format(ilk.dirt)}</td>
+             <td className="has-text-right">{formatAmount.format(ilk.hole)}</td>
+             <td className="has-text-right">{formatPercent.format(Math.abs(1 - ilk.chop))}</td>
+             <td className="has-text-right">{formatAmount.format(ilk.cut)}</td>
+             <td className="has-text-right">{formatAmount.format(ilk.step)}</td>
+             <td className="has-text-right">{formatAmount.format(ilk.buf)}</td>
+             <td className="has-text-right">{formatAmount.format(ilk.cusp)}</td>
+             <td className="has-text-right">{formatAmount.format(ilk.tail / 60)}</td>
+             <td className="has-text-right">{formatPercent.format(ilk.chip)}</td>
+             <td className="has-text-right">{formatAmount.format(ilk.tip)}</td>
           </tr>
          )
   }

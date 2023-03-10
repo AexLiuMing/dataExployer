@@ -148,11 +148,11 @@ const Main = (props) => {
 
               <TabPanel>
                 <Collateral {...props} ilk="ETH-A" supply={props.ethSupply} />
-                <Collateral {...props} ilk="ETH-B" supply={props.ethSupply} />
-                <Collateral {...props} ilk="ETH-C" supply={props.ethSupply} />
-                <Collateral {...props} ilk="WBTC-A" />
-                <Collateral {...props} ilk="WBTC-B" />
-                <Collateral {...props} ilk="WBTC-C" />
+                {/*<Collateral {...props} ilk="ETH-B" supply={props.ethSupply} />*/}
+                {/*<Collateral {...props} ilk="ETH-C" supply={props.ethSupply} />*/}
+                {/*<Collateral {...props} ilk="WBTC-A" />*/}
+                {/*<Collateral {...props} ilk="WBTC-B" />*/}
+                {/*<Collateral {...props} ilk="WBTC-C" />*/}
               </TabPanel>
               <TabPanel>
                 {/* <Collateral {...props} ilk="UNIV2USDCETH-A" showLockedDecimals={true} />

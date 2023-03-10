@@ -234,11 +234,11 @@ class App extends Component {
       , { blockTag: blockNumber })
     let promises = [
       p1, // (0-151)
-      // this.etherscanEthSupply(),
+      this.etherscanEthSupply(),
       this.getPrice(add.PIP_ETH, this.POSITION_NXT),
-      // this.getPrice(add.MEDIAN_ETH, this.POSITION_MEDIAN_VAL),
-      // this.getPrice(add.PIP_WBTC, this.POSITION_NXT),
-      // this.getPrice(add.MEDIAN_WBTC, this.POSITION_MEDIAN_VAL),
+      this.getPrice(add.MEDIAN_ETH, this.POSITION_MEDIAN_VAL),
+      this.getPrice(add.PIP_WBTC, this.POSITION_NXT),
+      this.getPrice(add.MEDIAN_WBTC, this.POSITION_MEDIAN_VAL),
       // this.getHistoricalDebt({ blockInterval: 45500 /* ≈ 7 day */, periods: 52 /* 12 months */ }),
     ]
 
@@ -337,7 +337,8 @@ class App extends Component {
     ]
 
     const ilksByName = ilks.reduce((a, x) => ({ ...a, [x.ilk]: x }), {})
-    // const sysLocked = ilks.reduce((t, i) => t.add(i.valueBn), ethers.BigNumber.from('0'))
+    console.log()
+    const sysLocked = ilks.reduce((t, i) => t.add(i.valueBn), ethers.BigNumber.from('0'))
     // const d3mAdaiFeesPending = ilksByName["DIRECT-AAVEV2-DAI"].lockedBn.sub(d3mAdaiDaiDebt)
     // const d3mAdaiTotalSupply =  d3mAdaiAvailableLiquidity.add(d3mAdaiTotalSupplyVariable.add(d3mAdaiTotalSupplyFixed))
     // const d3mAdaiAdjustment = ethers.BigNumber.from("0") //d3mAdaiTargetSupply.sub(d3mAdaiTotalSupply)
@@ -392,7 +393,7 @@ class App extends Component {
         flopKicks: flopKicks.toNumber(),
         flopDelay: vowWait.toNumber(),
         cdps: cdps.toString(),
-        sysLocked: utils.formatUnits(0, 45),
+        sysLocked: utils.formatUnits(sysLocked,45),
         chaiSupply: utils.formatEther(chaiSupply),
         mkrSupply: utils.formatEther(mkrSupply),
         vice: utils.formatUnits(vice, 45),
@@ -472,20 +473,20 @@ class App extends Component {
       }
       price = RAY
       valueBn = value.mul(WAD)
-    //   value = utils.formatUnits(value, 27)
-    // } else {
-    //   zzz = pip.interface.decodeFunctionResult('zzz', res[idx++])
-    //   price = spotIlk.mat.mul(ilk.spot).div(RAY);
+      value = utils.formatUnits(value, 27)
+    } else {
+      zzz = pip.interface.decodeFunctionResult('zzz', res[idx++])
+      price = spotIlk.mat.mul(ilk.spot).div(RAY);
 
-    //   if (tokenDp) {
-    //     value = locked.mul(tokenDp).mul(priceMedian.mul(medianDp))
-    //   } else if (medianDp) {
-    //     value = locked.mul(priceMedian.mul(medianDp))
-    //   } else {
-    //     value = locked.mul(priceMedian || price)
-    //   }
-    //   valueBn = value
-    //   value = utils.formatUnits(value, 45)
+      if (tokenDp) {
+        value = locked.mul(tokenDp).mul(priceMedian.mul(medianDp))
+      } else if (medianDp) {
+        value = locked.mul(priceMedian.mul(medianDp))
+      } else {
+        value = locked.mul(priceMedian || price)
+      }
+      valueBn = value
+      value = utils.formatUnits(value, 45)
     }
 
     const r = {
@@ -518,7 +519,7 @@ class App extends Component {
       locked: utils.formatUnits(locked, units),
       lockedBn: locked,
       supply: utils.formatUnits(supply, units),
-      price: utils.formatUnits(ethers.BigNumber.from(1).mul(DP10), 27),
+      price: utils.formatUnits(price, 27),
       value: value,
       valueBn: valueBn
     };
@@ -603,10 +604,10 @@ class App extends Component {
     return this.calcFee(combo);
   }
 
-  // etherscanEthSupply = async () => {
-  //   const json = await jsonFetch(ETHERSCAN_ETHSUPPLY_URL);
-  //   return json.result;
-  // }
+  etherscanEthSupply = async () => {
+    // ethers.BigNumber(ethers.BigNumber.from('0x' + 122373866217800000000000000).mul(ethers.BigNumber.from(10).pow(18)).toString());
+    return 1223738662178;
+  }
 
   getPrice = async (osm, position) => {
     const val = await eth.getStorageAt(osm, position);
@@ -669,6 +670,26 @@ class App extends Component {
           <div className="notification has-text-centered">
             { /* eslint-disable-next-line */}
             {t('daistats.block')}: <strong>{this.state.blockNumber}</strong> Time: <strong title={this.state.timestamp}>{this.state.timestampHHMM}</strong>. {this.state.paused ? `${t('daistats.pause')}.` : `${t('daistats.auto_updating')}.`} <a onClick={this.togglePause}>{this.state.paused ? t('daistats.restart') : t('daistats.pause')}</a>
+            <div className="buttons is-centered">
+              <button className="button is-small is-rounded" onClick={() => this.props.toggle('en')}>English</button>
+              <button className="button is-small is-rounded" onClick={() => this.props.toggle('es')}>Español</button>
+              <button className="button is-small is-rounded" onClick={() => this.props.toggle('fr')}>Français</button>
+              <button className="button is-small is-rounded" onClick={() => this.props.toggle('it')}>Italiano</button>
+              <button className="button is-small is-rounded" onClick={() => this.props.toggle('de')}>Deutsch</button>
+              <button className="button is-small is-rounded" onClick={() => this.props.toggle('id')}>Bahasa Indonesia</button>
+              <button className="button is-small is-rounded" onClick={() => this.props.toggle('zh-TW')}>繁體中文</button>
+              <button className="button is-small is-rounded" onClick={() => this.props.toggle('jp')}>日本語</button>
+              <button className="button is-small is-rounded" onClick={() => this.props.toggle('ru')}>Русский</button>
+              <button className="button is-small is-rounded" onClick={() => this.props.toggle('ga')}>Gaeilge</button>
+              <button className="button is-small is-rounded" onClick={() => this.props.toggle('tr')}>Türkçe</button>
+              <button className="button is-small is-rounded" onClick={() => this.props.toggle('pl')}>Polski</button>
+              <button className="button is-small is-rounded" onClick={() => this.props.toggle('ro')}>Română</button>
+              <button className="button is-small is-rounded" onClick={() => this.props.toggle('fa')}>فارسی</button>
+              <button className="button is-small is-rounded" onClick={() => this.props.toggle('uk')}>Українська</button>
+              <button className="button is-small is-rounded" onClick={() => this.props.toggle('kr')}>한국어</button>
+              <button className="button is-small is-rounded" onClick={() => this.props.toggle('af')}>Afrikaans</button>
+              {/* <button className="button is-small is-rounded" onClick={() => this.props.toggle('dw')}>Daiwanese 🤪</button> */}
+            </div>
           </div>
           <Switch>
             <Route path="/gsuc">
