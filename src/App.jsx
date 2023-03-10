@@ -494,10 +494,10 @@ class App extends Component {
 
       if (tokenDp) {
         value = locked.mul(tokenDp).mul(priceMedian.mul(medianDp))
-      } else if (medianDp) {
+      } else if (medianDp > 0 && priceMedian>0) {
         value = locked.mul(priceMedian.mul(medianDp))
       } else {
-        value = locked.mul(priceMedian || price)
+        value = locked.mul(price || priceMedian)
       }
       valueBn = value
       value = utils.formatUnits(value, 45)
