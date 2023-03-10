@@ -110,6 +110,7 @@ const Main = (props) => {
               <div className="column">
                 <div className="box has-text-centered">
                   <CollateralChart ilks={props.ilks} debt={props.sysLocked} useValue={true} />
+
                   <h4 className="subtitle is-size-4">dai Collateralization</h4>
                 </div>
               </div>
@@ -148,6 +149,7 @@ const Main = (props) => {
 
               <TabPanel>
                 <Collateral {...props} ilk="ETH-A" supply={props.ethSupply} />
+                {/*todd*/}
                 {/*<Collateral {...props} ilk="ETH-B" supply={props.ethSupply} />*/}
                 {/*<Collateral {...props} ilk="ETH-C" supply={props.ethSupply} />*/}
                 {/*<Collateral {...props} ilk="WBTC-A" />*/}
@@ -256,6 +258,8 @@ const Main = (props) => {
           <TabPanel>
             <div className="columns">
               <Pip {...props} token="ETH" ilk="ETH-A" formater={formatTwoDp} />
+              {/*todd*/}
+
               {/* <Pip {...props} token="wstETH" ilk="WSTETH-A" formater={formatTwoDp} /> */}
               {/*<Pip {...props} token="BTC" ilk="WBTC-A" formater={formatTwoDp} />*/}
             </div>
@@ -368,6 +372,8 @@ const Main = (props) => {
                   <Clip heading={true} />
                   <tbody>
                     <Clip {...props} token="ETH-A" ilk="ETH-A" />
+                    {/*todd*/}
+
                     {/*<Clip {...props} token="ETH-B" ilk="ETH-B" />*/}
                     {/*<Clip {...props} token="ETH-C" ilk="ETH-C" />*/}
                     {/*<Clip {...props} token="WBTC-A" ilk="WBTC-A" />*/}

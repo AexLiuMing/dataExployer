@@ -75,6 +75,7 @@ const vestDai = build(add.MCD_VEST_DAI, "DssVestSuckable")
 const vestMkr = build(add.MCD_VEST_MKR, "DssVestMintable")
 const vestMkrTreasury = build(add.MCD_VEST_MKR_TREASURY, "DssVestTransferrable")
 const weth = build(add.ETH, "ERC20")
+// todd: 从地址载入合约
 // const wbtc = build(add.WBTC, "ERC20")
 const bkr = build(add.BKR, "ERC20")
 const dai = build(add.MCD_DAI, "Dai")
@@ -88,6 +89,7 @@ const flap = build(add.MCD_FLAP, "Flapper")
 const flop = build(add.MCD_FLOP, "Flopper")
 const pip = build(add.PIP_ETH, "OSM")
 const ethAIlkBytes = utils.formatBytes32String("ETH-A")
+// todd加载不同的ETH质押的合约
 // const ethBIlkBytes = utils.formatBytes32String("ETH-B")
 // const ethCIlkBytes = utils.formatBytes32String("ETH-C")
 // const wbtcAIlkBytes = utils.formatBytes32String("WBTC-A")
@@ -121,6 +123,10 @@ const VEST_DAI_LEGACY_IDS = 0
 const VEST_DAI_IDS = 0
 const VEST_MKR_TREASURY_IDS = 0
 
+//todd 修改graph:使用的graph版本
+// 使用 https://thegraph.com/hosted-service/subgraph/protofire/maker-protocol
+// github仓库：https://github.com/protofire/maker-protocol-subgraph
+// 使用 docs/vow,flopper分支
 const subgraphClient = new GraphQLClient(
   "http://192.168.20.107:8000/subgraphs/name/protofire/maker-protocol",
   { mode: "cors" }
@@ -226,6 +232,7 @@ class App extends Component {
       // .concat(this.getVestingCalls(add.MCD_VEST_DAI, vestDai, VEST_DAI_IDS)) // 3, 52
       // .concat(this.getVestingCalls(add.MCD_VEST_MKR_TREASURY, vestMkrTreasury, VEST_MKR_TREASURY_IDS)) // 3, 55
       .concat(this.getIlkCall(ethAIlkBytes, 'ETH_A', weth, add.ETH, add.PIP_ETH)) // 17, 66
+      // todd 加入不同的 ilk
       // .concat(this.getIlkCall(ethBIlkBytes, 'ETH_B', weth, add.ETH, add.PIP_ETH)) // 17, 83
       // .concat(this.getIlkCall(ethCIlkBytes, 'ETH_C', weth, add.ETH, add.PIP_ETH)) // 17, 100
       // .concat(this.getIlkCall(wbtcAIlkBytes, 'WBTC_A', wbtc, add.WBTC, add.PIP_WBTC)) // 17, 117
@@ -329,6 +336,7 @@ class App extends Component {
     const ilks = [
       // this.getIlkMap(res, offset += (VEST_MKR_TREASURY_IDS * VEST_CALL_COUNT), "ETH", "ETH-A", weth, 18, base, ethPriceNxt, ethPriceMedian, DP10),
       this.getIlkMap(res, offset, "ETH", "ETH-A", weth, 18, base, ethPriceNxt, ethPriceMedian, DP10),
+      //todd
       // this.getIlkMap(res, offset += ILK_CALL_COUNT, "ETH", "ETH-B", weth, 18, base, ethPriceNxt, ethPriceMedian, DP10),
       // this.getIlkMap(res, offset += ILK_CALL_COUNT, "ETH", "ETH-C", weth, 18, base, ethPriceNxt, ethPriceMedian, DP10),
       // this.getIlkMap(res, offset += ILK_CALL_COUNT, "WBTC", "WBTC-A", wbtc, 8, base, wbtcPriceNxt, wbtcPriceMedian, DP10, DP8),
@@ -337,8 +345,14 @@ class App extends Component {
     ]
 
     const ilksByName = ilks.reduce((a, x) => ({ ...a, [x.ilk]: x }), {})
-    console.log()
+    console.log(ilks)
+    //todd
     const sysLocked = ilks.reduce((t, i) => t.add(i.valueBn), ethers.BigNumber.from('0'))
+
+    // todd 下面是假数据
+    // 0x0e72007d01e5348393649d34f88ebcd4c09dbf170000
+    // const sysLocked = ethers.BigNumber.from('0x0e72007d01e5348393649d34f88ebcd4c09dbf170000')
+
     // const d3mAdaiFeesPending = ilksByName["DIRECT-AAVEV2-DAI"].lockedBn.sub(d3mAdaiDaiDebt)
     // const d3mAdaiTotalSupply =  d3mAdaiAvailableLiquidity.add(d3mAdaiTotalSupplyVariable.add(d3mAdaiTotalSupplyFixed))
     // const d3mAdaiAdjustment = ethers.BigNumber.from("0") //d3mAdaiTargetSupply.sub(d3mAdaiTotalSupply)
@@ -604,9 +618,11 @@ class App extends Component {
     return this.calcFee(combo);
   }
 
+  //todd
   etherscanEthSupply = async () => {
     // ethers.BigNumber(ethers.BigNumber.from('0x' + 122373866217800000000000000).mul(ethers.BigNumber.from(10).pow(18)).toString());
-    return 1223738662178;
+    // 从浏览器拿去锁仓数量，直接返回固定值
+    return 0;
   }
 
   getPrice = async (osm, position) => {

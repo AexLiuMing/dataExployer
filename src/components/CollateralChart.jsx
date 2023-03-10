@@ -54,6 +54,7 @@ const COLORS_DARK = [
     "hsl(348, 86%, 43%)"]
 
 const CollateralChart = ({ ilks, debt, useValue, groupBy }) => {
+  console.log("debt",debt)
   const t = useTranslate()
 
   const locale = useMemo(() => (
@@ -136,6 +137,7 @@ const CollateralChart = ({ ilks, debt, useValue, groupBy }) => {
   const data = all.filter(ilkThreshold)
   data.push({"name": "Others",
              "value": others.reduce((t, v) => t + v["value"], 0)})
+  console.log("data,data",data)
 
   // FIXME use grey instead of fill colour for labels? set stroke colour?
   //{data.map((entry, index) => <Cell fill={COLORS[index % COLORS.length]}/>)}
