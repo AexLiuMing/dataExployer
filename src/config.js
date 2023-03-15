@@ -1,5 +1,5 @@
 export const configs = {
-  NETWORK_ID: 99,
+  NETWORK_ID: 2137,
   // INFURA_APP_ID: "79a94efd744448b980ba2daab9575b31",
   // ETHERSCAN_URL: "https://etherscan.io",
 
