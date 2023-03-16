@@ -88,6 +88,11 @@ const calc = build(add.MCD_CLIP_CALC_ETH_A, "StairstepExponentialDecrease")
 const flap = build(add.MCD_FLAP, "Flapper")
 const flop = build(add.MCD_FLOP, "Flopper")
 const pip = build(add.PIP_ETH, "OSM")
+
+// https://github.com/makerdao/dss-lerp
+// 这是提案的一种方式目前省略
+// const lerp = build(add.LERP_HUMP, "Lerp")
+
 const ethAIlkBytes = utils.formatBytes32String("ETH-A")
 // todd加载不同的ETH质押的合约
 // const ethBIlkBytes = utils.formatBytes32String("ETH-B")
@@ -228,6 +233,12 @@ class App extends Component {
       [add.MCD_ESM, esm.interface.encodeFunctionData('Sum', [])],
       [add.MCD_END, end.interface.encodeFunctionData('wait', [])],
       //49
+
+      // lerp
+      // [add.LERP_HUMP, lerp.interface.encodeFunctionData('start', [])],
+      // [add.LERP_HUMP, lerp.interface.encodeFunctionData('end', [])],
+      // [add.LERP_HUMP, lerp.interface.encodeFunctionData('startTime', [])],
+      // [add.LERP_HUMP, lerp.interface.encodeFunctionData('duration', [])],
     ]
       // .concat(this.getVestingCalls(add.MCD_VEST_DAI, vestDai, VEST_DAI_IDS)) // 3, 52
       // .concat(this.getVestingCalls(add.MCD_VEST_MKR_TREASURY, vestMkrTreasury, VEST_MKR_TREASURY_IDS)) // 3, 55
@@ -319,6 +330,11 @@ class App extends Component {
     //variableDebtTokenAddress, , ] = LendingPool.getReserveData(asset.address)
     // asset is the ERC20 deposited or borrowed, eg. DAI, WETH
 
+    // lerp
+    // const lerpHumpStart = lerp.interface.decodeFunctionResult('start', res[offset++])[0]
+    // const lerpHumpEnd = lerp.interface.decodeFunctionResult('end', res[offset++])[0]
+    // const lerpHumpStartTime = lerp.interface.decodeFunctionResult('startTime', res[offset++])[0]
+    // const lerpHumpDuration = lerp.interface.decodeFunctionResult('duration', res[offset++])[0]
 
     const ILK_CALL_COUNT = 17;
     const ILK_RWA_CALL_COUNT = 8;

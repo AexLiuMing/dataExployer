@@ -51,7 +51,7 @@ function Collateral(props) {
   const t = useTranslate()
   const ilk = props.ilksByName[props.ilk]
   console.log("ilk1111",ilk)
-  if (props.supply) {
+  if (props.supply != 0) {
       supply = props.supply
   } else {
       supply = ilk.supply
